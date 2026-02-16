@@ -229,13 +229,9 @@
     let gameState = { inProgress: false, phase: 'lobby', turnIndex: 0, votes: {}, currentWord: "", imposterId: "", playerOrder: [] };
 
     function initNickname() {
-        let saved = localStorage.getItem("imp_nickname");
-        if (!saved) {
-            const adjs = ["SWIFT", "MIGHTY", "SILENT", "NEON", "BRAVE", "SHARP"];
-            const nouns = ["FALCON", "KNIGHT", "GHOST", "RUNNER", "WOLF", "STORM"];
-            saved = `${adjs[Math.floor(Math.random()*adjs.length)]}${nouns[Math.floor(Math.random()*nouns.length)]}`;
-            localStorage.setItem("imp_nickname", saved);
-        }
+        const adjs = ["SWIFT", "MIGHTY", "SILENT", "NEON", "BRAVE", "SHARP"];
+        const nouns = ["FALCON", "KNIGHT", "GHOST", "RUNNER", "WOLF", "STORM"];
+        saved = `${adjs[Math.floor(Math.random()*adjs.length)]}${nouns[Math.floor(Math.random()*nouns.length)]}`;
         username = saved.toUpperCase();
         updateLobbyUI();
     }
@@ -280,7 +276,7 @@
     function saveSettings() {
         if (!gameState.inProgress) {
             const newName = document.getElementById('settings-username').value.trim().toUpperCase();
-            if (newName) { username = newName; localStorage.setItem("imp_nickname", username); updateLobbyUI(); }
+            if (newName) { username = newName; updateLobbyUI(); }
         }
         closeSettings();
     }
