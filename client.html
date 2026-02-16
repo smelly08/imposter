@@ -9,33 +9,24 @@
     </style>
 </head>
 <body>
-
-    <iframe id="github-frame"></iframe>
-
+    <iframe id="g"></iframe>
     <script>
-        async function loadRemotePage() {
-            // Use the RAW URL
+        async function load() {
             const url = 'https://raw.githubusercontent.com/smelly08/imposter/main/index.html';
-
             try {
-                const response = await fetch(url);
-                const html = await response.text();
-
+                const r = await fetch(url);
+                const html = await r.text();
                 // 1. Create a "Blob" (a virtual file) from the text
-                const blob = new Blob([html], { type: 'text/html' });
-                
+                const b1 = new Blob([html], { type: 'text/html' });
                 // 2. Create a URL for that virtual file
-                const blobUrl = URL.createObjectURL(blob);
-
+                const b2 = URL.createObjectURL(b1);
                 // 3. Set the iframe source to that URL
-                document.getElementById('github-frame').src = blobUrl;
-
+                document.getElementById('g').src = b2;
             } catch (error) {
                 console.error("Failed to load the page:", error);
             }
         }
-
-        loadRemotePage();
+        load();
     </script>
 </body>
 </html>
