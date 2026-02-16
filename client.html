@@ -16,11 +16,8 @@
             try {
                 const r = await fetch(url);
                 const html = await r.text();
-                // 1. Create a "Blob" (a virtual file) from the text
                 const b1 = new Blob([html], { type: 'text/html' });
-                // 2. Create a URL for that virtual file
                 const b2 = URL.createObjectURL(b1);
-                // 3. Set the iframe source to that URL
                 document.getElementById('g').src = b2;
             } catch (error) {
                 console.error("Failed to load the page:", error);
